@@ -9,16 +9,13 @@
 import Foundation
 
 /**
- Protocol that defines the **VIPER router** base functionality and specify what must be
- implemented by the application routers
+ Protocol that defines the **VIPER router layer** base functionality and specify what must be implemented by the application routers
  
- This base router takes care of the **module layers creation**, as well as their
- **relationship with each other**.
+ This base router takes care of the **module layers creation**, as well as their **relationship with each other**.
  
  - Important:
-    The router layer, in this case, has to know about UIKit, UIViewController
-    and its subclasses, needed to perform navigation between view.
-    Its viewController reference is just for this purpose
+    The router layer, in this case, has to know about UIKit, UIViewController and its subclasses, needed to perform navigation
+    between view. Its **viewController reference** is just for this purpose
  */
 public protocol VIPERBaseRouter: class {
     
@@ -30,28 +27,28 @@ public protocol VIPERBaseRouter: class {
      
      - Returns: Created view
      */
-    static func getView() -> VIPERBaseView
+    static func createView() -> VIPERBaseView
     
     /**
      Creates the presenter of the VIPER module
      
      - Returns: Created presenter
      */
-    static func getPresenter() -> VIPERBasePresenter
+    static func createPresenter() -> VIPERBasePresenter
     
     /**
      Creates the interactor of the VIPER module
      
      - Returns: Created interactor
      */
-    static func getInteractor() -> VIPERBaseInteractor
+    static func createInteractor() -> VIPERBaseInteractor
     
     /**
      Creates the router of the VIPER module
      
      - Returns: Created router
      */
-    static func getRouter() -> VIPERBaseRouter
+    static func createRouter() -> VIPERBaseRouter
 }
 
 public extension VIPERBaseRouter {
@@ -64,10 +61,10 @@ public extension VIPERBaseRouter {
      - Returns: View controller of the created module to be used to perform navigation
      */
     public static func createModule(embedIn: VIPERModuleEmbedType = .None) -> UIViewController {
-        let view = getView()
-        let presenter = getPresenter()
-        let interactor = getInteractor()
-        let router = getRouter()
+        let view = createView()
+        let presenter = createPresenter()
+        let interactor = createInteractor()
+        let router = createRouter()
         
         switch embedIn {
             case .NavigationController:
@@ -85,12 +82,11 @@ public extension VIPERBaseRouter {
                 router.viewController = view as! UIViewController
         }
         
-        view.presenter = presenter
-        presenter.router = router
-        presenter.view = view
-        view.presenter = presenter
-        presenter.interactor = interactor
-        interactor.presenter = presenter
+        view.basePresenter = presenter
+        presenter.baseView = view
+        presenter.baseRouter = router
+        presenter.baseInteractor = interactor
+        interactor.basePresenter = presenter
         
         return router.viewController
     }
