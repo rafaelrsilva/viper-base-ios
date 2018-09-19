@@ -69,15 +69,15 @@ public extension VIPERBaseRouter {
         switch embedIn {
             case .NavigationController:
                 router.viewController = UINavigationController(rootViewController: view as! UIViewController)
-            
+
             case .TabBarController:
                 let tabBar = UITabBarController()
                 tabBar.viewControllers = [view as! UIViewController]
                 router.viewController = tabBar
-            
+
             case .None:
                 fallthrough
-            
+
             default:
                 router.viewController = view as! UIViewController
         }
@@ -95,25 +95,62 @@ public extension VIPERBaseRouter {
      Presents a VIPER module modally
      
      - Parameter destination: View controller of the destination module
+     - Parameter embedIn: Embed the view controller before navigation
      - Parameter animated: Perform animation. **Default: true**
      - Parameter completion: Handler to execute after presentation. **Default: nil**
      */
-    public func presentModule(withView destination: UIViewController, animated: Bool = true, completion: (() -> Void)? = nil) {
-        viewController.present(destination, animated: animated, completion: completion)
+    public func presentModule(withView destination: UIViewController, embedIn: VIPERModuleEmbedType = .None, animated: Bool = true, completion: (() -> Void)? = nil) {
+        let viewControllerToPresent: UIViewController
+        
+        switch embedIn {
+            case .NavigationController:
+                viewControllerToPresent = UINavigationController(rootViewController: destination)
+            
+            case .TabBarController:
+                let tab = UITabBarController()
+                tab.viewControllers = [destination]
+                viewControllerToPresent = tab
+            
+            default:
+                viewControllerToPresent = destination
+        }
+        
+        if let navigationController = viewController.navigationController {
+            navigationController.present(viewControllerToPresent, animated: animated, completion: completion)
+            return
+        }
+        
+        viewController.present(viewControllerToPresent, animated: animated, completion: completion)
     }
     
     /**
      Pushes a VIPER module onto the receiver’s stack and updates the display.
 
      - Parameter destination: View controller of the destination module
+     - Parameter embedIn: Embed the view controller before navigation
      - Parameter animated: Perform animation. **Default: true**
      */
-    public func pushModule(withView destination: UIViewController, animated: Bool = true) {
+    public func pushModule(withView destination: UIViewController, embedIn: VIPERModuleEmbedType = .None, animated: Bool = true) {
+        let viewControllerToPush: UIViewController
+        
+        switch embedIn {
+            case .NavigationController:
+                viewControllerToPush = UINavigationController(rootViewController: destination)
+            
+            case .TabBarController:
+                let tab = UITabBarController()
+                tab.viewControllers = [destination]
+                viewControllerToPush = tab
+            
+            default:
+                viewControllerToPush = destination
+        }
+        
         if let navigationController = viewController as? UINavigationController {
-            navigationController.pushViewController(destination, animated: animated)
+            navigationController.pushViewController(viewControllerToPush, animated: animated)
             return
         }
         
-        viewController.navigationController?.pushViewController(destination, animated: animated)
+        viewController.navigationController?.pushViewController(viewControllerToPush, animated: animated)
     }
 }
