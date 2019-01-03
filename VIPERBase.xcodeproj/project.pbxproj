@@ -13,6 +13,8 @@
 		9D37BF0E2134846700AB25F5 /* VIPERBasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D37BF092134846600AB25F5 /* VIPERBasePresenter.swift */; };
 		9D37BF0F2134846700AB25F5 /* VIPERBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D37BF0A2134846600AB25F5 /* VIPERBaseView.swift */; };
 		9D37BF102134846700AB25F5 /* VIPERModuleEmbedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D37BF0B2134846700AB25F5 /* VIPERModuleEmbedType.swift */; };
+		9DAEC0BD21DEA4BD00E5D106 /* VIPERBaseViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAEC0BC21DEA4BD00E5D106 /* VIPERBaseViewType.swift */; };
+		9DAEC0BF21DEA56200E5D106 /* VIPERBaseBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAEC0BE21DEA56200E5D106 /* VIPERBaseBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		9D37BF092134846600AB25F5 /* VIPERBasePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VIPERBasePresenter.swift; sourceTree = "<group>"; };
 		9D37BF0A2134846600AB25F5 /* VIPERBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VIPERBaseView.swift; sourceTree = "<group>"; };
 		9D37BF0B2134846700AB25F5 /* VIPERModuleEmbedType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VIPERModuleEmbedType.swift; sourceTree = "<group>"; };
+		9DAEC0BC21DEA4BD00E5D106 /* VIPERBaseViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPERBaseViewType.swift; sourceTree = "<group>"; };
+		9DAEC0BE21DEA56200E5D106 /* VIPERBaseBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIPERBaseBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,25 @@
 		9D37BEFE2134844900AB25F5 /* VIPERBase */ = {
 			isa = PBXGroup;
 			children = (
+				9DAEC0BB21DEA47D00E5D106 /* Enums */,
+				9D37BF002134844900AB25F5 /* Info.plist */,
 				9D37BEFF2134844900AB25F5 /* VIPERBase.h */,
+				9DAEC0BE21DEA56200E5D106 /* VIPERBaseBuilder.swift */,
 				9D37BF072134846600AB25F5 /* VIPERBaseInteractor.swift */,
 				9D37BF092134846600AB25F5 /* VIPERBasePresenter.swift */,
 				9D37BF082134846600AB25F5 /* VIPERBaseRouter.swift */,
 				9D37BF0A2134846600AB25F5 /* VIPERBaseView.swift */,
-				9D37BF0B2134846700AB25F5 /* VIPERModuleEmbedType.swift */,
-				9D37BF002134844900AB25F5 /* Info.plist */,
 			);
 			path = VIPERBase;
+			sourceTree = "<group>";
+		};
+		9DAEC0BB21DEA47D00E5D106 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				9DAEC0BC21DEA4BD00E5D106 /* VIPERBaseViewType.swift */,
+				9D37BF0B2134846700AB25F5 /* VIPERModuleEmbedType.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,9 +162,11 @@
 			files = (
 				9D37BF0E2134846700AB25F5 /* VIPERBasePresenter.swift in Sources */,
 				9D37BF0D2134846700AB25F5 /* VIPERBaseRouter.swift in Sources */,
+				9DAEC0BD21DEA4BD00E5D106 /* VIPERBaseViewType.swift in Sources */,
 				9D37BF0F2134846700AB25F5 /* VIPERBaseView.swift in Sources */,
 				9D37BF102134846700AB25F5 /* VIPERModuleEmbedType.swift in Sources */,
 				9D37BF0C2134846700AB25F5 /* VIPERBaseInteractor.swift in Sources */,
+				9DAEC0BF21DEA56200E5D106 /* VIPERBaseBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

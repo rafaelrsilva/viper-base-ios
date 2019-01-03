@@ -13,12 +13,13 @@ import Foundation
  */
 public enum VIPERModuleEmbedType {
     
-    ///Not to embed the created view controller
-    case None
+    /**
+     Not to embed the view controller
+     */
+    case none
     
-    ///Embed created view controller in a navigation controller
-    case NavigationController
-    
-    ///Embed created view controller in a tab bar controller
-    case TabBarController
+    /**
+     Embed view controller in a navigation controller
+     */
+    case navigationController
 }
