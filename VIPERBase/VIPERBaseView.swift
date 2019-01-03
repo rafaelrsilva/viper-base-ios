@@ -26,4 +26,9 @@ public protocol VIPERBaseView: class {
          }
      */
     var basePresenter: VIPERBasePresenter! { get set }
+    
+    /**
+     Default initializer
+     */
+    init()
 }

@@ -60,4 +60,9 @@ public protocol VIPERBasePresenter: class {
          }
      */
     var baseInteractor: VIPERBaseInteractor! { get set }
+    
+    /**
+     Default initializer
+     */
+    init()
 }

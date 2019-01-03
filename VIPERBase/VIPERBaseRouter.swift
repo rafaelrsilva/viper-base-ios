@@ -6,7 +6,7 @@
 //  Copyright © 2018 Rafael Ribeiro da Silva. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /**
  Protocol that defines the **VIPER router layer** base functionality and specify what must be implemented by the application routers
@@ -19,77 +19,22 @@ import Foundation
  */
 public protocol VIPERBaseRouter: class {
     
-    ///View controller reference just for performing navigation
+    /**
+     View controller reference just for performing navigation
+     */
     var viewController: UIViewController! { get set }
     
     /**
-     Creates the view of the VIPER module
-     
-     - Returns: Created view
+     Default initializer
      */
-    static func createView() -> VIPERBaseView
-    
-    /**
-     Creates the presenter of the VIPER module
-     
-     - Returns: Created presenter
-     */
-    static func createPresenter() -> VIPERBasePresenter
-    
-    /**
-     Creates the interactor of the VIPER module
-     
-     - Returns: Created interactor
-     */
-    static func createInteractor() -> VIPERBaseInteractor
-    
-    /**
-     Creates the router of the VIPER module
-     
-     - Returns: Created router
-     */
-    static func createRouter() -> VIPERBaseRouter
+    init()
 }
 
+
+//MARK: - Public methods
+
+
 public extension VIPERBaseRouter {
-    
-    /**
-     Creates the module and all VIPER layers
-     
-     - Parameter embedIn: Embed options for the view controller of the created module. **Default: .None**
-    
-     - Returns: View controller of the created module to be used to perform navigation
-     */
-    public static func createModule(embedIn: VIPERModuleEmbedType = .None) -> UIViewController {
-        let view = createView()
-        let presenter = createPresenter()
-        let interactor = createInteractor()
-        let router = createRouter()
-        
-        switch embedIn {
-            case .NavigationController:
-                router.viewController = UINavigationController(rootViewController: view as! UIViewController)
-
-            case .TabBarController:
-                let tabBar = UITabBarController()
-                tabBar.viewControllers = [view as! UIViewController]
-                router.viewController = tabBar
-
-            case .None:
-                fallthrough
-
-            default:
-                router.viewController = view as! UIViewController
-        }
-        
-        view.basePresenter = presenter
-        presenter.baseView = view
-        presenter.baseRouter = router
-        presenter.baseInteractor = interactor
-        interactor.basePresenter = presenter
-        
-        return router.viewController
-    }
     
     /**
      Presents a VIPER module modally
@@ -99,21 +44,8 @@ public extension VIPERBaseRouter {
      - Parameter animated: Perform animation. **Default: true**
      - Parameter completion: Handler to execute after presentation. **Default: nil**
      */
-    public func presentModule(withView destination: UIViewController, embedIn: VIPERModuleEmbedType = .None, animated: Bool = true, completion: (() -> Void)? = nil) {
-        let viewControllerToPresent: UIViewController
-        
-        switch embedIn {
-            case .NavigationController:
-                viewControllerToPresent = UINavigationController(rootViewController: destination)
-            
-            case .TabBarController:
-                let tab = UITabBarController()
-                tab.viewControllers = [destination]
-                viewControllerToPresent = tab
-            
-            default:
-                viewControllerToPresent = destination
-        }
+    func presentModule(withView destination: UIViewController, embedIn: VIPERModuleEmbedType = .none, animated: Bool = true, completion: (() -> Void)? = nil) {
+        let viewControllerToPresent = getViewControllerToShow(destination, embedIn: embedIn)
         
         if let navigationController = viewController.navigationController {
             navigationController.present(viewControllerToPresent, animated: animated, completion: completion)
@@ -130,21 +62,8 @@ public extension VIPERBaseRouter {
      - Parameter embedIn: Embed the view controller before navigation
      - Parameter animated: Perform animation. **Default: true**
      */
-    public func pushModule(withView destination: UIViewController, embedIn: VIPERModuleEmbedType = .None, animated: Bool = true) {
-        let viewControllerToPush: UIViewController
-        
-        switch embedIn {
-            case .NavigationController:
-                viewControllerToPush = UINavigationController(rootViewController: destination)
-            
-            case .TabBarController:
-                let tab = UITabBarController()
-                tab.viewControllers = [destination]
-                viewControllerToPush = tab
-            
-            default:
-                viewControllerToPush = destination
-        }
+    func pushModule(withView destination: UIViewController, embedIn: VIPERModuleEmbedType = .none, animated: Bool = true) {
+        let viewControllerToPush = getViewControllerToShow(destination, embedIn: embedIn)
         
         if let navigationController = viewController as? UINavigationController {
             navigationController.pushViewController(viewControllerToPush, animated: animated)
@@ -152,5 +71,29 @@ public extension VIPERBaseRouter {
         }
         
         viewController.navigationController?.pushViewController(viewControllerToPush, animated: animated)
+    }
+}
+
+
+//MARK: - Private methods
+
+
+private extension VIPERBaseRouter {
+    
+    /**
+     Prepares the view controller according to the embed type
+     
+     - Parameter viewControllerToShow: View controller to be prepared
+     - Parameter embedIn: Embed type for the view controller
+     - Returns: The prepared view controller
+     */
+    func getViewControllerToShow(_ viewControllerToShow: UIViewController, embedIn: VIPERModuleEmbedType) -> UIViewController {
+        switch embedIn {
+            case .navigationController:
+                return UINavigationController(rootViewController: viewControllerToShow)
+                
+            case .none:
+                return viewControllerToShow
+        }
     }
 }
