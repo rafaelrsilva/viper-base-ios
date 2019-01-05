@@ -3,30 +3,14 @@
 import Foundation
 import VIPERBase
 
-class ___VARIABLE_productName___Router: VIPERBaseRouter {
+final class ___VARIABLE_moduleRouterClass___: ___VARIABLE_baseRouterProtocol___ {
 
-    internal var viewController: UIViewController!
-    
-    static func createView() -> VIPERBaseView {
-        return UIStoryboard(name: "___VARIABLE_productName___View", bundle: nil).instantiateInitialViewController() as! ___VARIABLE_productName___View
-    }
-
-    static func createPresenter() -> VIPERBasePresenter {
-        return ___VARIABLE_productName___Presenter()
-    }
-
-    static func createInteractor() -> VIPERBaseInteractor {
-        return ___VARIABLE_productName___Interactor()
-    }
-
-    static func createRouter() -> VIPERBaseRouter {
-        return ___VARIABLE_productName___Router()
-    }
+    weak var viewController: UIViewController!
 
 }
 
-//MARK: - ___VARIABLE_productName___RouterProtocol
+//MARK: - ___VARIABLE_routerContractName___
 
-extension ___VARIABLE_productName___Router: ___VARIABLE_productName___RouterProtocol {
+extension ___VARIABLE_moduleRouterClass___: ___VARIABLE_routerContractName___ {
 
 }

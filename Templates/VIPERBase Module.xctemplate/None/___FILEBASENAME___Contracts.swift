@@ -5,61 +5,30 @@ import VIPERBase
 
 //MARK: - View Contract
 
-protocol ___VARIABLE_productName___ViewProtocol: class {
+protocol ___VARIABLE_viewContractName___: class {
 
 }
 
 //MARK: - View Output Contract
 
-protocol ___VARIABLE_productName___ViewOutputProtocol: class {
+protocol ___VARIABLE_viewOutputContractName___: class {
 
 }
 
 //MARK: - Interactor Contract
 
-protocol ___VARIABLE_productName___InteractorProtocol: class {
+protocol ___VARIABLE_interactorContractName___: class {
 
 }
 
 //MARK: - Interactor Output Contract
 
-protocol ___VARIABLE_productName___InteractorOutputProtocol: class {
+protocol ___VARIABLE_interactorOutputContractName___: class {
 
 }
 
 //MARK: - Router Contract
 
-protocol ___VARIABLE_productName___RouterProtocol: class {
+protocol ___VARIABLE_routerContractName___: class {
 
-}
-
-//MARK: - VIPERBase protocols extensions for this module
-
-extension VIPERBaseView where Self: ___VARIABLE_productName___View {
-
-    var presenter: ___VARIABLE_productName___ViewOutputProtocol! {
-        return basePresenter as? ___VARIABLE_productName___ViewOutputProtocol
-    }
-}
-
-extension VIPERBaseInteractor where Self: ___VARIABLE_productName___Interactor {
-
-    weak var presenter: ___VARIABLE_productName___InteractorOutputProtocol! {
-        return basePresenter as? ___VARIABLE_productName___InteractorOutputProtocol
-    }
-}
-
-extension VIPERBasePresenter where Self: ___VARIABLE_productName___Presenter {
-
-    weak var view: ___VARIABLE_productName___ViewProtocol! {
-        return baseView as? ___VARIABLE_productName___ViewProtocol
-    }
-
-    var router: ___VARIABLE_productName___RouterProtocol! {
-        return baseRouter as? ___VARIABLE_productName___RouterProtocol
-    }
-
-    var interactor: ___VARIABLE_productName___InteractorProtocol! {
-        return baseInteractor as? ___VARIABLE_productName___InteractorProtocol
-    }
 }
