@@ -1,5 +1,5 @@
 //
-//  VIPERBaseBuilder.swift
+//  VIPERBuilder.swift
 //  VIPERBase
 //
 //  Created by Rafael on 03/01/19.
@@ -11,27 +11,27 @@ import UIKit
 /**
  Protocol that defines the **VIPER builder** base functionality and what is needed to configure a new VIPER module
  */
-public protocol VIPERBaseBuilder: class {
+public protocol VIPERBuilder: class {
     
     /**
      Associated type of the view layer of the module
      */
-    associatedtype View: UIViewController & VIPERBaseView
+    associatedtype View: UIViewController & VIPERView
     
     /**
      Associated type of the presenter layer of the module
      */
-    associatedtype Presenter: VIPERBasePresenter
+    associatedtype Presenter: VIPERPresenter
     
     /**
      Associated type of the interactor layer of the module
      */
-    associatedtype Interactor: VIPERBaseInteractor
+    associatedtype Interactor: VIPERInteractor
     
     /**
      Associated type of the router layer of the module
      */
-    associatedtype Router: VIPERBaseRouter
+    associatedtype Router: VIPERRouter
     
     /**
      View UI file type
@@ -39,7 +39,7 @@ public protocol VIPERBaseBuilder: class {
     static var viewType: VIPERBaseViewType { get }
 }
 
-public extension VIPERBaseBuilder {
+public extension VIPERBuilder {
     
     /**
      Creates the module and its VIPER layers
@@ -65,11 +65,11 @@ public extension VIPERBaseBuilder {
         let interactor = Interactor()
         let router = Router()
         
-        view.basePresenter = presenter
-        presenter.baseView = view
-        presenter.baseRouter = router
-        presenter.baseInteractor = interactor
-        interactor.basePresenter = presenter
+        view.presenter = presenter as? Self.View.Presenter
+        presenter.view = view as? Self.Presenter.View
+        presenter.router = router as? Self.Presenter.Router
+        presenter.interactor = interactor as? Self.Presenter.Interactor
+        interactor.presenter = presenter as? Self.Interactor.Presenter
         router.viewController = view
         
         return (view, presenter)
