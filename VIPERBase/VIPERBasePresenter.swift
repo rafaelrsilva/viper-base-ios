@@ -1,5 +1,5 @@
 //
-//  VIPERBasePresenter.swift
+//  VIPERPresenter.swift
 //  VIPERBase
 //
 //  Created by Rafael on 27/08/18.
@@ -9,60 +9,37 @@
 import Foundation
 
 /**
- Protocol that defines the **VIPER presenter layer** base functionality and specify what must be implemented by the application presenters
+ Protocol that defines the **Presenter** layer of VIPER architecture
  */
-public protocol VIPERBasePresenter: class {
+public protocol VIPERPresenter: VIPERBaseLayer {
     
     /**
-     Module base view reference
-     
-     - Important:
-     To access **view** methods defined in the module contracts, is needed to force a **downcast to the respective protocol**.
-     
-     The best way to achieve this is declaring a non-stored property.
-     
-     See example below:
-     
-         var view: ModuleViewProtocol {
-            return baseView as! ModuleViewProtocol
-         }
+     Type of the view in the presenter layer
      */
-    var baseView: VIPERBaseView! { get set }
+    associatedtype View
     
     /**
-     Module base router reference
-     
-     - Important:
-     To access **router** methods defined in the module contracts, is needed to force a **downcast to the respective protocol**.
-     
-     The best way to achieve this is declaring a non-stored property.
-     
-     See example below:
-     
-         var router: ModuleRouterProtocol {
-            return baseRouter as! ModuleRouterProtocol
-         }
+     Type of the interactor in the presenter layer
      */
-    var baseRouter: VIPERBaseRouter! { get set }
+    associatedtype Interactor
     
     /**
-     Module base interactor reference
-     
-     - Important:
-     To access **interactor** methods defined in the module contracts, is needed to force a **downcast to the respective protocol**.
-     
-     The best way to achieve this is declaring a non-stored property.
-     
-     See example below:
-     
-         var interactor: ModuleInteractorProtocol {
-            return baseInteractor as! ModuleInteractorProtocol
-         }
+     Type of the router in the presenter layer
      */
-    var baseInteractor: VIPERBaseInteractor! { get set }
+    associatedtype Router
     
     /**
-     Default initializer
+     View of the module
      */
-    init()
+    var view: View! { get set }
+    
+    /**
+     Interactor of the module
+     */
+    var interactor: Interactor! { get set }
+    
+    /**
+     Router of the module
+     */
+    var router: Router! { get set }
 }

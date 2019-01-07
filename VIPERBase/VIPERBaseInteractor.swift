@@ -1,5 +1,5 @@
 //
-//  VIPERBaseInteractor.swift
+//  VIPERInteractor.swift
 //  VIPERBase
 //
 //  Created by Rafael on 27/08/18.
@@ -9,26 +9,17 @@
 import Foundation
 
 /**
- Protocol that defines the **VIPER interactor layer** base functionality and specify what must be implemented by the application interactors
+ Protocol that defines the **Interactor** layer of VIPER architecture
  */
-public protocol VIPERBaseInteractor: class {
+public protocol VIPERInteractor: VIPERBaseLayer {
     
     /**
-     Module base presenter reference
-     
-     - Important:
-     To access **presenter** methods defined in the module contracts, is needed to force a **downcast to the respective protocol**
-     
-     The best way to achieve this is declaring a non-stored property.
-     
-         var presenter: ModuleInteractorOutputProtocol {
-            return basePresenter as! ModuleInteractorOutputProtocol
-         }
+     Type of the presenter in the interactor layer
      */
-    var basePresenter: VIPERBasePresenter! { get set }
+    associatedtype Presenter
     
     /**
-     Default initializer
+     Presenter of the module
      */
-    init()
+    var presenter: Presenter! { get set }
 }

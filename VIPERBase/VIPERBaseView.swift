@@ -1,5 +1,5 @@
 //
-//  VIPERBaseView.swift
+//  VIPERView.swift
 //  VIPERBase
 //
 //  Created by Rafael on 27/08/18.
@@ -9,26 +9,17 @@
 import Foundation
 
 /**
- Protocol that defines the **VIPER view layer** base functionality and specify what must be implemented by the application views
+ Protocol that defines the **View** layer of VIPER architecture
  */
-public protocol VIPERBaseView: class {
+public protocol VIPERView: VIPERBaseLayer {
     
     /**
-     Module base presenter reference
-     
-     - Important:
-     To access **presenter** methods defined in the module contracts, is needed to force a **downcast to the respective protocol**
-     
-     The best way to achieve this is declaring a non-stored property.
-     
-         var presenter: ModuleViewOutputProtocol {
-            return basePresenter as! ModuleViewOutputProtocol
-         }
+     Type of the presenter in the view layer
      */
-    var basePresenter: VIPERBasePresenter! { get set }
+    associatedtype Presenter
     
     /**
-     Default initializer
+     Presenter of the module
      */
-    init()
+    var presenter: Presenter! { get set }
 }
