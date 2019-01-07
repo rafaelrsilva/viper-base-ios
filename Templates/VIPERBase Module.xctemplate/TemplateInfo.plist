@@ -57,31 +57,31 @@
 				<key>Identifier</key>
 				<string>baseBuilderProtocol</string>
 				<key>Default</key>
-				<string>VIPERBaseBuilder</string>
+				<string>VIPERBuilder</string>
 			</dict>
 			<dict>
 				<key>Identifier</key>
 				<string>baseViewProtocol</string>
 				<key>Default</key>
-				<string>VIPERBaseView</string>
+				<string>VIPERView</string>
 			</dict>
 			<dict>
 				<key>Identifier</key>
 				<string>basePresenterProtocol</string>
 				<key>Default</key>
-				<string>VIPERBasePresenter</string>
+				<string>VIPERPresenter</string>
 			</dict>
 			<dict>
 				<key>Identifier</key>
 				<string>baseInteractorProtocol</string>
 				<key>Default</key>
-				<string>VIPERBaseInteractor</string>
+				<string>VIPERInteractor</string>
 			</dict>
 			<dict>
 				<key>Identifier</key>
 				<string>baseRouterProtocol</string>
 				<key>Default</key>
-				<string>VIPERBaseRouter</string>
+				<string>VIPERRouter</string>
 			</dict>
 
 			<!-- MODULE CLASS NAMES  -->
