@@ -20,30 +20,30 @@ Set a name for the module, **without any suffix**. This name will be used to cre
 
 The file names follow the format below:
 
-- **[ModuleName]**Builder.swift
-- **[ModuleName]**Contracts.swift
-- **[ModuleName]**Interactor.swift
-- **[ModuleName]**Presenter.swift
-- **[ModuleName]**Router.swift
-- **[ModuleName]**View.swift
-- **[ModuleName]**View.storyboard (for **Storyboard** UI Type only)
-- **[ModuleName]**View.xib (for **XIB** UI Type only)
+- **ModuleName**Builder.swift
+- **ModuleName**Contracts.swift
+- **ModuleName**Interactor.swift
+- **ModuleName**Presenter.swift
+- **ModuleName**Router.swift
+- **ModuleName**View.swift
+- **ModuleName**View.storyboard (for **Storyboard** UI Type only)
+- **ModuleName**View.xib (for **XIB** UI Type only)
 
 The class names follow the format below:
 
-- **[ModuleName]**Builder
-- **[ModuleName]**Interactor
-- **[ModuleName]**Presenter
-- **[ModuleName]**Router
-- **[ModuleName]**View
+- **ModuleName**Builder
+- **ModuleName**Interactor
+- **ModuleName**Presenter
+- **ModuleName**Router
+- **ModuleName**View
 
 The contract names follow the format below:
 
-- **[ModuleName]**ViewProtocol
-- **[ModuleName]**ViewOutputProtocol
-- **[ModuleName]**InteractorProtocol
-- **[ModuleName]**InteractorOutputProtocol
-- **[ModuleName]**RouterProtocol
+- **ModuleName**ViewProtocol
+- **ModuleName**ViewOutputProtocol
+- **ModuleName**InteractorProtocol
+- **ModuleName**InteractorOutputProtocol
+- **ModuleName**RouterProtocol
 
 ### View UI Type
 
