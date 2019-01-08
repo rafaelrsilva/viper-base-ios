@@ -42,12 +42,15 @@ public protocol VIPERBuilder: class {
 public extension VIPERBuilder {
     
     /**
-     Creates the module and its VIPER layers
+     Creates the module
      
      - Returns: Both view and presenter layers of the module
      */
-    static func buildModule() -> (view: View, presenter: Presenter) {
+    static func build() -> (view: View, presenter: Presenter) {
         let view: View
+        let presenter = Presenter()
+        let interactor = Interactor()
+        let router = Router()
         
         switch viewType {
             case .storyboard(let name, let bundle):
@@ -61,10 +64,6 @@ public extension VIPERBuilder {
                 view = View()
         }
         
-        let presenter = Presenter()
-        let interactor = Interactor()
-        let router = Router()
-        
         view.presenter = presenter as? Self.View.Presenter
         presenter.view = view as? Self.Presenter.View
         presenter.router = router as? Self.Presenter.Router
@@ -73,5 +72,40 @@ public extension VIPERBuilder {
         router.viewController = view
         
         return (view, presenter)
+    }
+
+    /**
+     Build the module and attach its view to a window
+     
+     - Important:
+        If it is necessary to pass some data to the module, consider creating a custom build method in the module builder class
+        or use 'build' method instead
+     
+     - Returns: Created window
+     */
+    static func buildAndAttachToWindow() -> UIWindow {
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        window.rootViewController = build().view
+        window.makeKeyAndVisible()
+        return window
+    }
+
+    /**
+     Build the module and attach its view to a navigation controller
+     
+     - Important:
+        If it is necessary to pass some data to the module, consider creating a custom build method in the module builder class
+        or use 'build' method instead
+     
+     - Returns: Created navigation controller
+     */
+    static func buildAndAttachToNavigationController(tabBarItem: UITabBarItem? = nil) -> UINavigationController {
+        let navigationController = UINavigationController(rootViewController: build().view)
+        
+        if let item = tabBarItem {
+            navigationController.tabBarItem = item
+        }
+        
+        return navigationController
     }
 }
