@@ -51,5 +51,11 @@ The contract names follow the format below:
 - **XIB**: Will be created a XIB file for designing the UI.
 - **None**: No file for designing the UI. Use this if you pretend to design the UI programmatically.
 
-For both storyboard and XIB, there is a default view controller component created and configured. No additional setup needed, unless you pretend to use other components, like table view controller, collection view controller and others. For this case, you need to connect the respective class and the UI by your own.
+For both storyboard and XIB, there is a default view controller component created and configured. No additional setup needed, unless you intent to use other components, like table view controller, collection view controller and others. For this case, you need to connect the respective class and the UI by your own.
 
+
+## Conclusion
+
+After creating the module, it is expected no errors if you try to rebuild the project.
+
+This readme file covered only the template install and usage. For assistence about implementation, check **VIPERBase** readme file [here](https://github.com/rafaelrsilva/viper-base-ios).
