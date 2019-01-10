@@ -1,10 +1,8 @@
 # VIPERBase
 
-
 VIPERBase is a implementation of VIPER architecture for using in iOS platform.
 
 This project aims to make VIPER usage and adoption easier, taking care of module creation and configuration
-
 
 ## Installation
 
@@ -33,7 +31,7 @@ $ pod install
 The bad experience you may have when using VIPER is to create, by yourself, all files, classes and protocols needed by VIPER architecture.
 Using the xcode template, this hard work is done automatically.
 
-To install and use this template, check this [tutorial](https://github.com/rafaelrsilva/viper-base-ios/templates).
+To install and use this template, check this [tutorial](templates).
 
 ## Module overview
 
@@ -41,12 +39,10 @@ A module represents a screen of the app.
 
 ![](https://raw.githubusercontent.com/rafaelrsilva/viper-base-ios/assets/template/viper-base-diagram.png)
 
-
 This implementation of VIPER, has some particularities:
 
-
 - **Builder component**
-
+			
 Some approaches consider the module creation task as a responsibility of the **router**. But this violates the **Single Responsibility Principle**, since it is already responsible for navigation between module.
 
 To solve this problem, **builder** was created. It is in charge of creating all components of the module and make the connections.
@@ -129,7 +125,29 @@ protocol MyModuleRouterProtocol: class {
 
 ---
 
+### View
+
+#### Basic structure of a view:
+
+```swift
+final class MyModuleView: UIViewController, VIPERView {
+    var presenter: MyModuleViewOutputProtocol!
+}
+
+//MARK: - MyModuleViewProtocol
+
+extension MyModuleView: MyModuleViewProtocol {
+
+}
+```
+
+You just need to implement the method defined in the **view contract**.
+
+---
+
 ### Presenter
+
+#### Basic structure of a presenter:
 
 ```swift
 final class MyModulePresenter: VIPERPresenter {
@@ -151,10 +169,14 @@ extension MyModulePresenter: MyModuleInteractorOutputProtocol {
 }
 ```
 
+You just need to implement the method defined in the **view output contract** and **interactor output contract**.
+
+
 ---
 
 ### Interactor
 
+#### Basic structure of an interactor:
 
 ```swift
 final class MyModuleInteractor: VIPERInteractor {
@@ -168,11 +190,13 @@ extension MyModuleInteractor: MyModuleInteractorProtocol {
 }
 ```
 
+You just need to implement the method defined in the **interactor contract**.
+
 ---
 
 ### Router 
 
-The router is responsible to perform the navigation between modules.
+#### Basic structure of a router
 
 ```swift
 final class MyModuleRouter: VIPERRouter {
@@ -186,27 +210,37 @@ extension MyModuleRouter: MyModuleRouterProtocol {
 }
 ```
 
+You just need to implement the method defined in the **router contract**.
+
+
+#### Navigation between modules
+
+In the router, navigation can be done in two ways: **presenting the module modally** or **pushing the module onto a navigation stack**. To perform navigation, use the methods below:
+
+**- presentModule(withView:embedIn:animated:completion:)**
+
+This method presents the next module modally
+
+- `withView`: View of the module to navigate to.
+- `embedIn`: **`.navigationController`** or **`.none`**. **The default value is `.none`**
+- `animated`: Whether or not to perform the animation of the transition. **The default value is `true`**
+- `completion`: Handler called when transition finishes. **The default value is `nil`**
+
 ---
 
-### View
+**- pushModule(withView:embedIn:animated:)**
 
-```swift
-final class MyModuleView: UIViewController, VIPERView {
-    var presenter: MyModuleViewOutputProtocol!
-}
+This method pushes the next module onto the navigation stack. It only works if the current module is embeded in a navigation controller or is part of a navigation stack.
 
-//MARK: - MyModuleViewProtocol
-
-extension MyModuleView: MyModuleViewProtocol {
-
-}
-```
+- `withView`: View of the module to navigate to.
+- `embedIn`: **`.navigationController`** or **`.none`**. **The default value is `.none`**
+- `animated`: Whether or not to perform the animation of the transition. **The default value is `true`**
 
 ---
 
 ### Builder
 
-In the builder class, you specify the respective classes for **view**, **presenter**, **interactor** and **router** for that module.
+In the builder class, you specify the respective classes for `View`, `Presenter`, `Interactor` and `router` for that module.
 
 ```swift
 final class MyModuleBuilder: VIPERBuilder {
@@ -229,30 +263,110 @@ extension MyModuleBuilder {
 
 You also define the way the view UI will be loaded, through the `viewType` property. There are three possible values:
 
-#### Storyboard file
-
-You just need to inform the name of the storyboard file, without extension, and the bundle, if needed.
-
+- **Storyboard file**: You just need to inform the name of the storyboard file, without extension, and the bundle, if needed.
 ```swift
-return .storyboard(name: "MyModuleView", bundle: nil)
+.storyboard(name: "MyModuleView", bundle: nil)
 ```
 
-#### NIB/XIB file
-
-You just need to inform the name of the XIB file, without extension, and the bundle, if needed.
-
+- **XIB file**: You just need to inform the name of the XIB file, without extension, and the bundle, if needed.
 ```swift
-return .nib(name: "MyModuleView", bundle: nil)
+.nib(name: "MyModuleView", bundle: nil)
 ```
 
-#### None
-
-If you intent to implement the UI programmatically, use this option.
-
+- **None**: If you intent to implement the UI programmatically, use this option.
 ```swift
-return .none
+.none
 ```
 
+#### Building a module
+
+The three methods below can be used to build a module. Additionally you can create custom build methods, according to the module needs
+
+**- build()**: 
+
+Creates the module and returns a tuple containig the `view` and `presenter`, You can use presenter reference for passing data between the modules.
+
+```swift
+//MARK: - MyModuleRouterProtocol
+
+extension MyModuleRouter: MyModuleRouterProtocol {
+    
+    func goToNextModule() {
+        let module = NextModuleBuilder.build()
+        pushModule(withView: module.view)
+    }
+}
+```
+
+---
+
+**- buildAndAttachToWindow()**
+
+This is a special build method, usually used for starting the initial module of the app, called in `AppDelegate` class:
+
+```swift
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var window: UIWindow?
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        window = InitialModuleBuilder.buildAndAttachToWindow()
+        return true
+    }
+}
+```
+
+---
+
+**- buildAndAttachToNavigationController(tabBarItem:)**
+
+This method creates the module, attach it to a navigation controller and returns the navigation controller reference. If you intent to use the module inside a tab bar controller, you can use `tabBarItem` parameter to configure the tab bar item for this module.
+
+```swift
+let tabBarController = UITabBarController()
+
+let bookmarksItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
+let contactsItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 1)
+let downloadsItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 2)
+
+tabBarController.viewControllers = [
+    BookmarksBuilder.buildAndAttachToNavigationController(tabBarItem: bookmarksItem),
+    ContactsBuilder.buildAndAttachToNavigationController(tabBarItem: contactsItem),
+    DownloadsBuilder.buildAndAttachToNavigationController(tabBarItem: downloadsItem)
+]
+```
+---
+
+#### Custom build methods
+
+If you have a specific module that **expects to receive some data**, it is convenient to create a **custom build method** for that module. That way, the builder will be in charge of pass this data to the `presenter`
+
+1. Define a **static method** in the builder class, defining the expected paramenters and returning `View`
+2. Start the implementation calling the `build()` method
+3. Pass the data to the `presenter`
+4. return the `view`
+	
+```swift
+//MARK: - Builder custom methods
+
+extension NextModuleBuilder {
+    
+    static func build(someData: Any, anotherData: Any) -> View {
+        let module = build()        
+        module.presenter.someProperty = someProperty
+		module.presenter.anotherData = anotherData
+		return module.view
+    }
+}
+```
+
+Routers call this builder like this:
+
+```swift
+let view = NextModuleBuilder.build(someData: "Example of data", anotherData: "Another example of data")
+pushModule(withView: view)
+```
 
 ## License
 
