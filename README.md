@@ -344,8 +344,8 @@ extension NextModuleBuilder {
     static func build(someData: Any, anotherData: Any) -> View {
         let module = build()        
         module.presenter.someData = someData
-		module.presenter.anotherData = anotherData
-		return module.view
+        module.presenter.anotherData = anotherData
+        return module.view
     }
 }
 ```
