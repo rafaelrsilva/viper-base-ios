@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Kind</key>
+		<string>Xcode.IDEFoundation.TextSubstitutionFileTemplateKind</string>
+		<key>Description</key>
+		<string>Create a VIPERBase module with all its layers files</string>
+		<key>Summary</key>
+		<string>Create a VIPERBase module with all its layers files</string>
+		<key>SortOrder</key>
+		<string>1</string>
+		<key>Platforms</key>
+		<array>
+			<string>com.apple.platform.iphoneos</string>
+		</array>
+		<key>Options</key>  
+		<array>  
+			<dict>
+				<key>Identifier</key>
+				<string>productName</string>
+				<key>Required</key>
+				<string>true</string>
+				<key>Name</key>
+				<string>Module Name:</string>
+				<key>Description</key>
+				<string>The name of the module to create</string>
+				<key>Type</key>
+				<string>text</string>
+				<key>NotPersisted</key>
+				<string>true</string>
+			</dict>
+			<dict>
+				<key>Identifier</key>
+				<string>viewType</string>
+				<key>Required</key>
+				<true/>
+				<key>Name</key>
+				<string>View UI Type:</string>
+				<key>Description</key>
+				<string>The type of file used to create view UI</string>
+				<key>Type</key>
+				<string>popup</string>
+				<key>Default</key>
+				<string>Storyboard</string>
+				<key>Values</key>
+				<array>
+					<string>Storyboard</string>
+					<string>XIB</string>
+					<string>None</string>
+				</array>
+			</dict>
+
+			<!-- BASE PROTOCOL NAMES  -->
+
+			<dict>
+				<key>Identifier</key>
+				<string>baseBuilderProtocol</string>
+				<key>Default</key>
+				<string>VIPERBuilder</string>
+			</dict>
+			<dict>
+				<key>Identifier</key>
+				<string>baseViewProtocol</string>
+				<key>Default</key>
+				<string>VIPERView</string>
+			</dict>
+			<dict>
+				<key>Identifier</key>
+				<string>basePresenterProtocol</string>
+				<key>Default</key>
+				<string>VIPERPresenter</string>
+			</dict>
+			<dict>
+				<key>Identifier</key>
+				<string>baseInteractorProtocol</string>
+				<key>Default</key>
+				<string>VIPERInteractor</string>
+			</dict>
+			<dict>
+				<key>Identifier</key>
+				<string>baseRouterProtocol</string>
+				<key>Default</key>
+				<string>VIPERRouter</string>
+			</dict>
+
+			<!-- MODULE CLASS NAMES  -->
+
+			<dict>
+				<key>Identifier</key>
+				<string>moduleBuilderClass</string>
+				<key>Default</key>
+				<string>___VARIABLE_productName___Builder</string>
+			</dict>
+			<dict>
+				<key>Identifier</key>
+				<string>moduleViewClass</string>
+				<key>Default</key>
+				<string>___VARIABLE_productName___View</string>
+			</dict>
+			<dict>
+				<key>Identifier</key>
+				<string>modulePresenterClass</string>
+				<key>Default</key>
+				<string>___VARIABLE_productName___Presenter</string>
+			</dict>
+			<dict>
+				<key>Identifier</key>
+				<string>moduleInteractorClass</string>
+				<key>Default</key>
+				<string>___VARIABLE_productName___Interactor</string>
+			</dict>
+			<dict>
+				<key>Identifier</key>
+				<string>moduleRouterClass</string>
+				<key>Default</key>
+				<string>___VARIABLE_productName___Router</string>
+			</dict>
+
+			<!-- CONTRACTS NAMES -->
+
+			<dict>
+				<key>Identifier</key>
+				<string>viewContractName</string>
+				<key>Default</key>
+				<string>___VARIABLE_productName___ViewProtocol</string>
+			</dict>
+			<dict>
+				<key>Identifier</key>
+				<string>viewOutputContractName</string>
+				<key>Default</key>
+				<string>___VARIABLE_productName___ViewOutputProtocol</string>
+			</dict>
+			<dict>
+				<key>Identifier</key>
+				<string>interactorContractName</string>
+				<key>Default</key>
+				<string>___VARIABLE_productName___InteractorProtocol</string>
+			</dict>
+			<dict>
+				<key>Identifier</key>
+				<string>interactorOutputContractName</string>
+				<key>Default</key>
+				<string>___VARIABLE_productName___InteractorOutputProtocol</string>
+			</dict>
+			<dict>
+				<key>Identifier</key>
+				<string>routerContractName</string>
+				<key>Default</key>
+				<string>___VARIABLE_productName___RouterProtocol</string>
+			</dict>
+		</array>
+	</dict>
+</plist>

@@ -1,5 +1,5 @@
 //
-//  VIPERBaseRouter.swift
+//  VIPERRouter.swift
 //  VIPERBase
 //
 //  Created by Rafael on 27/08/18.
@@ -9,32 +9,23 @@
 import UIKit
 
 /**
- Protocol that defines the **VIPER router layer** base functionality and specify what must be implemented by the application routers
- 
- This base router takes care of the **module layers creation**, as well as their **relationship with each other**.
+ Protocol that defines the **Router** layer of VIPER architecture
  
  - Important:
     The router layer, in this case, has to know about UIKit, UIViewController and its subclasses, needed to perform navigation
     between view. Its **viewController reference** is just for this purpose
  */
-public protocol VIPERBaseRouter: class {
+public protocol VIPERRouter: VIPERBaseLayer {
     
     /**
-     View controller reference just for performing navigation
+     View controller reference, just for performing navigation
      */
     var viewController: UIViewController! { get set }
-    
-    /**
-     Default initializer
-     */
-    init()
 }
-
 
 //MARK: - Public methods
 
-
-public extension VIPERBaseRouter {
+public extension VIPERRouter {
     
     /**
      Presents a VIPER module modally
@@ -74,11 +65,9 @@ public extension VIPERBaseRouter {
     }
 }
 
-
 //MARK: - Private methods
 
-
-private extension VIPERBaseRouter {
+private extension VIPERRouter {
     
     /**
      Prepares the view controller according to the embed type
