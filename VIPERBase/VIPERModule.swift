@@ -16,12 +16,12 @@ public struct VIPERModule<View: UIViewController & VIPERView, Presenter: VIPERPr
     /**
      View of the module
      */
-    let view: View
+    public let view: View
     
     /**
      Presenter of the module
      */
-    let presenter: Presenter
+    public let presenter: Presenter
     
     /**
      Attach the view of the module to a window
