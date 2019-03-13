@@ -44,9 +44,10 @@ public extension VIPERBuilder {
     /**
      Creates the module
      
-     - Returns: Both view and presenter layers of the module
+     - Parameter viewType: View UI file type.
+     - Returns: The created module, containing both `view` and `presenter` references
      */
-    static func build() -> (view: View, presenter: Presenter) {
+    static func build(viewUIType viewType: VIPERBaseViewType = viewType) -> VIPERModule<View, Presenter> {
         let view: View
         let presenter = Presenter()
         let interactor = Interactor()
@@ -71,7 +72,7 @@ public extension VIPERBuilder {
         interactor.presenter = presenter as? Self.Interactor.Presenter
         router.viewController = view
         
-        return (view, presenter)
+        return VIPERModule(view: view, presenter: presenter)
     }
 
     /**
@@ -83,6 +84,7 @@ public extension VIPERBuilder {
      
      - Returns: Created window
      */
+    @available(*, deprecated, message: "Use 'build()' method instead and then 'attachToWindow()' method")
     static func buildAndAttachToWindow() -> UIWindow {
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.rootViewController = build().view
@@ -99,6 +101,7 @@ public extension VIPERBuilder {
      
      - Returns: Created navigation controller
      */
+    @available(*, deprecated, message: "Use 'build()' method instead and then 'attachToNavigationController(tabBarItem:)' method")
     static func buildAndAttachToNavigationController(tabBarItem: UITabBarItem? = nil) -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: build().view)
         
