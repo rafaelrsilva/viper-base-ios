@@ -12,7 +12,15 @@ import Foundation
  Struct that represents a created VIPER module.
  */
 public struct VIPERModule<View: UIViewController & VIPERView, Presenter: VIPERPresenter> {
+    
+    /**
+     View of the module
+     */
     let view: View
+    
+    /**
+     Presenter of the module
+     */
     let presenter: Presenter
     
     /**
@@ -32,13 +40,7 @@ public struct VIPERModule<View: UIViewController & VIPERView, Presenter: VIPERPr
      
      - Returns: Created navigation controller
      */
-    public func attachToNavigationController(tabBarItem: UITabBarItem? = nil) -> UINavigationController {
-        let navigationController = UINavigationController(rootViewController: view)
-        
-        if let item = tabBarItem {
-            navigationController.tabBarItem = item
-        }
-        
-        return navigationController
+    public func attachToNavigationController() -> UINavigationController {
+        return UINavigationController(rootViewController: view)
     }
 }
