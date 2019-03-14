@@ -3,13 +3,9 @@
 import Foundation
 import VIPERBase
 
-final class ___VARIABLE_moduleBuilderClass___: ___VARIABLE_baseBuilderProtocol___ {
-    typealias View = ___VARIABLE_moduleViewClass___
-    typealias Presenter = ___VARIABLE_modulePresenterClass___
-    typealias Interactor = ___VARIABLE_moduleInteractorClass___
-    typealias Router = ___VARIABLE_moduleRouterClass___
+final class ___VARIABLE_moduleBuilderClass___: ___VARIABLE_baseBuilderProtocol___<___VARIABLE_moduleViewClass___, ___VARIABLE_modulePresenterClass___, ___VARIABLE_moduleInteractorClass___, ___VARIABLE_moduleRouterClass___> {
     
-    static var viewType: VIPERBaseViewType {
+    override class var defaultViewUIType: VIPERViewUIType {
         return .nib(name: "___VARIABLE_moduleViewClass___", bundle: nil)
     }
 }

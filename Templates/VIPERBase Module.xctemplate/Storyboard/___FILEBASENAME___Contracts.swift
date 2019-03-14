@@ -1,7 +1,6 @@
 //___FILEHEADER___
 
 import Foundation
-import VIPERBase
 
 //MARK: - View Contract
 
