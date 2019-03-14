@@ -1,6 +1,6 @@
 # VIPERBase
 
-VIPERBase is a implementation of VIPER architecture for using in iOS platform.
+VIPERBase is an implementation of VIPER architecture for using in iOS platform.
 
 This project aims to make **VIPER usage and adoption easier**, facilitating all needed settings for working with this architecture and trying to reduce as much as possible the manual work arised due to its characteristic.
 
@@ -48,7 +48,7 @@ iOS architecture, the navigation is performed **from a UIViewController to anoth
 
 ### Contracts
 
-The contracts define how the communication between the layers will be made. Consists of 5 contracts:
+The contracts define how the communication between the layers will be made. A module consists of 5 contracts:
 
 #### View Contract
 
@@ -227,7 +227,7 @@ This method pushes the next module onto the **navigation stack**. It **only work
 
 ### Builder
 
-In the builder class, you specify the respective classes for `View`, `Presenter`, `Interactor` and `router` for that module.
+In the builder class, you specify the respective classes for `View`, `Presenter`, `Interactor` and `router` layers for the module.
 
 ```swift
 final class MyModuleBuilder: VIPERBuilder<MyModuleView, MyModulePresenter, MyModuleInteractor, MyModuleRouter> {
@@ -267,7 +267,7 @@ The 4 methods below can be used to build a module. Additionally **you can create
 
 **- build()**: 
 
-Creates the module and returns a tuple containig the `view` and `presenter`, You can use presenter reference for **passing data between the modules**.
+Creates the module and returns a `VIPERModule` struct containing the `view` and `presenter` references. You can use presenter reference for **passing data between the modules**.
 
 ```swift
 //MARK: - MyModuleRouterProtocol
@@ -285,7 +285,7 @@ extension MyModuleRouter: MyModuleRouterProtocol {
 
 **- build(viewUIType:)**: 
 
-This method works like the method above but it allows you to specify the UI type during method call. This method is convenient if you are using `typealias` to define the configuration of the module builder. 
+This method works like the method above but it allows you to specify the UI type during method call. This method is convenient when you are using `typealias` to define the configuration of the module builder. 
 
 ```swift
 typealias MyModuleBuilder = VIPERBuilder<MyModuleView, MyModulePresenter, MyModuleInteractor, MyModuleRouter>
@@ -293,7 +293,7 @@ typealias MyModuleBuilder = VIPERBuilder<MyModuleView, MyModulePresenter, MyModu
 MyModuleBuilder.build(viewUIType: .storyboard(name: "MyModuleView", bundle: nil))
 ```
 
-You can also use this method if you intent to perform **unit tests** around the module communication, **mocking one or more layer classes**.
+You can also use this method if you intent to perform **unit tests** around the module communication, **mocking one or more layer classes**, according to the test needs.
 
 ```swift
 import XCTest
@@ -331,7 +331,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
 
-**[UPDATED]:** Now you have to **build module first**, using either `build()` or `build(viewUIType:)` method, then call `attachToWindow()` or `attachToWindow(withNavigationController:)` new methods:
+**[UPDATED]:** Now you have to **build module first**, using either `build()` or `build(viewUIType:)` methods, then call `attachToWindow()` or `attachToWindow(withNavigationController:)` new methods:
 
 ```swift
 window = InitialModuleBuilder.build().attachToWindow()
@@ -363,7 +363,7 @@ tabBarController.viewControllers = [
 ]
 ```
 
-**[UPDATED]:** Now you have to **build module first**, using either `build()` or `build(viewUIType:)` method, then call `attachToNavigationController()` new method:
+**[UPDATED]:** Now you have to **build module first**, using either `build()` or `build(viewUIType:)` methods, then call `attachToNavigationController()` new method:
 
 ```swift
 window = MyModuleBuilder.build().attachToNavigationController()
@@ -402,7 +402,14 @@ Routers can call this builder like this:
 
 ```swift
 let view = NextModuleBuilder.build(someData: "Example of data", anotherData: "Another example of data")
+```
+
+```swift
 pushModule(withView: view)
+```
+
+```swift
+presentModule(withView: view)
 ```
 
 ## License

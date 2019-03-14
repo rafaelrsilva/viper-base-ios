@@ -4,7 +4,7 @@
 
 Copy the `VIPERBase Module.xctemplate` to the Xcode templates folder, in `~/Library/Developer/Xcode/Templates`.
 
-After that, modules can be created using the `New File...` command in Xcode.
+After that, you are able to create modules using the `New File...` command in Xcode.
 
 ![](https://raw.githubusercontent.com/rafaelrsilva/viper-base-ios/assets/template/new-file-section.png)
 
@@ -57,4 +57,4 @@ For both storyboard and XIB, there is a default view controller component create
 
 After creating the module, it is expected no errors if you try to rebuild the project.
 
-This readme file covered only the template install and usage. For assistence about implementation, check **VIPERBase** readme file [here](https://github.com/rafaelrsilva/viper-base-ios/blob/2.1.0/README.md).
+This readme file covered only the template installation and usage. For assistence about implementation, check **VIPERBase** readme file [here](https://github.com/rafaelrsilva/viper-base-ios/blob/2.1.0/README.md).
