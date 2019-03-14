@@ -26,11 +26,13 @@ public struct VIPERModule<View: UIViewController & VIPERView, Presenter: VIPERPr
     /**
      Attach the view of the module to a window
      
+     - Parameter navigationController: Boolean value indicating whether the view should also be attached to a navigation controller. `Defaul = false`
+
      - Returns: Created window
      */
-    public func attachToWindow() -> UIWindow {
+    public func attachToWindow(withNavigationController navigationController: Bool = false) -> UIWindow {
         let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = view
+        window.rootViewController = navigationController ? attachToNavigationController() : view
         window.makeKeyAndVisible()
         return window
     }

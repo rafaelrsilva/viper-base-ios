@@ -316,9 +316,9 @@ class ProjectTests: XCTestCase {
 
 **- [DEPRECATED] ~~buildAndAttachToWindow()~~** 
 
-This is a special build method, usually used for starting the initial module of the app, called in `AppDelegate` class:
+~~This is a special build method, usually used for starting the initial module of the app, called in `AppDelegate` class:~~
 
-```swift
+```
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -331,10 +331,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
 
-**[UPDATED]:** Now you have to **build module first**, using either `build()` or `build(viewUIType:)` method, then call `attachToWindow()` new method:
+**[UPDATED]:** Now you have to **build module first**, using either `build()` or `build(viewUIType:)` method, then call `attachToWindow()` or `attachToWindow(withNavigationController:)` new methods:
 
 ```swift
 window = InitialModuleBuilder.build().attachToWindow()
+```
+
+```swift
+window = InitialModuleBuilder.build().attachToWindow(withNavigationController: true)
 ```
 
 **[IMPORTANT]: It is planned to remove the deprecated method in the next major release (v3.0)**
@@ -343,9 +347,9 @@ window = InitialModuleBuilder.build().attachToWindow()
 
 **- [DEPRECATED] ~~buildAndAttachToNavigationController(tabBarItem:)~~**
 
-This method creates the module, attach it to a navigation controller and **returns the navigation controller reference**. If you intent to use the module **inside a tab bar controller**, you can use `tabBarItem` parameter to configure the tab bar item for this module.
+~~This method creates the module, attach it to a navigation controller and **returns the navigation controller reference**. If you intent to use the module **inside a tab bar controller**, you can use `tabBarItem` parameter to configure the tab bar item for this module.~~
 
-```swift
+```
 let tabBarController = UITabBarController()
 
 let bookmarksItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
