@@ -22,7 +22,7 @@ import UIKit
  
  **- Defining a new class for the builder**
  
- This method allows you to define custom build methods for the module
+ This method allows you to define custom build methods for the module.
  
      final class ModuleBuilder: VIPERBuilder<ModuleView, ModulePresenter, ModuleInteractor, ModuleRouter> {
  
@@ -63,12 +63,12 @@ open class VIPERBuilder<ViewType: UIViewController & VIPERView, PresenterType: V
 public extension VIPERBuilder {
     
     /**
-     Creates the module
+     Creates the module.
      
      - Parameter viewUIType: View UI file type.
-     - Returns: The created module, containing both `view` and `presenter` references
+     - Returns: The created module, containing both `view` and `presenter` references.
      */
-    class func build(viewUIType: VIPERViewUIType? = nil) -> VIPERModule<ViewType, PresenterType> {
+    class func build(viewUIType: VIPERViewUIType? = nil) -> VIPERModule<ViewType, PresenterType, InteractorType, RouterType> {
         let view: ViewType
         let presenter = PresenterType()
         let interactor = InteractorType()
@@ -95,17 +95,22 @@ public extension VIPERBuilder {
         interactor.presenter = presenter as? InteractorType.Presenter
         router.viewController = view
         
-        return VIPERModule(view: view, presenter: presenter)
+        return VIPERModule(
+            view: view,
+            presenter: presenter,
+            interactor: interactor,
+            router: router
+        )
     }
 
     /**
-     Build the module and attach its view to a window
+     Build the module and attach its view to a window.
      
      - Important:
         If it is necessary to pass some data to the module, consider creating a custom build method in the module builder class
-        or use 'build' method instead
+        or use 'build' method instead.
      
-     - Returns: Created window
+     - Returns: Created window.
      */
     @available(*, deprecated, message: "This will be removed in v3.0. Use 'build()' or 'build(viewUIType:)' methods instead, then call 'attachToWindow()' method of the created module.")
     static func buildAndAttachToWindow() -> UIWindow {
@@ -116,13 +121,13 @@ public extension VIPERBuilder {
     }
 
     /**
-     Build the module and attach its view to a navigation controller
+     Build the module and attach its view to a navigation controller.
      
      - Important:
         If it is necessary to pass some data to the module, consider creating a custom build method in the module builder class
-        or use 'build' method instead
+        or use 'build' method instead.
      
-     - Returns: Created navigation controller
+     - Returns: Created navigation controller.
      */
     @available(*, deprecated, message: "This will be removed in v3.0. Use 'build()' or 'build(viewUIType:)' methods instead, then call 'attachToNavigationController()' method of the created module.")
     static func buildAndAttachToNavigationController(tabBarItem: UITabBarItem? = nil) -> UINavigationController {

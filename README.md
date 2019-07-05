@@ -20,7 +20,7 @@ The baddest experience you may have when using VIPER is to create, **by yourself
 
 Xcode allows us to create personalized templates. With this resource available, we decided to create a **template specially for VIPERBase**. Using this template, there won't be manual work anymore.
 
-To install and use our template, check this [tutorial](https://github.com/rafaelrsilva/viper-base-ios/blob/2.1.0/Templates/README.md).
+To install and use our template, check this [tutorial](https://github.com/rafaelrsilva/viper-base-ios/blob/2.1.1/Templates/README.md).
 
 ## Module overview
 
@@ -55,7 +55,7 @@ The contracts define how the communication between the layers will be made. A mo
 The **view class** conforms to this protocol. It defines the communication from **presenter** to **view**
 
 ```swift
-//MARK: - View Contract
+// MARK: - View Contract
 
 protocol MyModuleViewProtocol: class {
 
@@ -67,7 +67,7 @@ protocol MyModuleViewProtocol: class {
 The **presenter class** conforms to this protocol. It defines the communication from **view** to **presenter**
 
 ```swift
-//MARK: - View Output Contract
+// MARK: - View Output Contract
 
 protocol MyModuleViewOutputProtocol: class {
 
@@ -79,7 +79,7 @@ protocol MyModuleViewOutputProtocol: class {
 The **interactor class** conforms to this protocol. It defines the communication from **presenter** to **interactor**
 
 ```swift
-//MARK: - Interactor Contract
+// MARK: - Interactor Contract
 
 protocol MyModuleInteractorProtocol: class {
 
@@ -91,7 +91,7 @@ protocol MyModuleInteractorProtocol: class {
 The **presenter class** conforms to this protocol. It defines the communication from **interactor** to **presenter**
 
 ```swift
-//MARK: - Interactor Output Contract
+// MARK: - Interactor Output Contract
 
 protocol MyModuleInteractorOutputProtocol: class {
 
@@ -103,7 +103,7 @@ protocol MyModuleInteractorOutputProtocol: class {
 The **router class** conforms to this protocol. It defines the communication from **presenter** to **router**
 
 ```swift
-//MARK: - Router Contract
+// MARK: - Router Contract
 
 protocol MyModuleRouterProtocol: class {
 
@@ -121,7 +121,7 @@ final class MyModuleView: UIViewController, VIPERView {
     var presenter: MyModuleViewOutputProtocol!
 }
 
-//MARK: - MyModuleViewProtocol
+// MARK: - MyModuleViewProtocol
 
 extension MyModuleView: MyModuleViewProtocol {
 
@@ -143,13 +143,13 @@ final class MyModulePresenter: VIPERPresenter {
     var router: MyModuleRouterProtocol!
 }
 
-//MARK: - MyModuleViewOutputProtocol
+// MARK: - MyModuleViewOutputProtocol
 
 extension MyModulePresenter: MyModuleViewOutputProtocol {
 
 }
 
-//MARK: - MyModuleInteractorOutputProtocol
+// MARK: - MyModuleInteractorOutputProtocol
 
 extension MyModulePresenter: MyModuleInteractorOutputProtocol {
 
@@ -170,7 +170,7 @@ final class MyModuleInteractor: VIPERInteractor {
     weak var presenter: MyModuleInteractorOutputProtocol!
 }
 
-//MARK: - MyModuleInteractorProtocol
+// MARK: - MyModuleInteractorProtocol
 
 extension MyModuleInteractor: MyModuleInteractorProtocol {
 
@@ -190,7 +190,7 @@ final class MyModuleRouter: VIPERRouter {
     weak var viewController: UIViewController!
 }
 
-//MARK: - MyModuleRouterProtocol
+// MARK: - MyModuleRouterProtocol
 
 extension MyModuleRouter: MyModuleRouterProtocol {
 
@@ -237,7 +237,7 @@ final class MyModuleBuilder: VIPERBuilder<MyModuleView, MyModulePresenter, MyMod
     }
 }
 
-//MARK: - Builder custom methods
+// MARK: - Builder custom methods
 
 extension MyModuleBuilder {
 
@@ -270,7 +270,7 @@ The 4 methods below can be used to build a module. Additionally **you can create
 Creates the module and returns a `VIPERModule` struct containing the `view` and `presenter` references. You can use presenter reference for **passing data between the modules**.
 
 ```swift
-//MARK: - MyModuleRouterProtocol
+// MARK: - MyModuleRouterProtocol
 
 extension MyModuleRouter: MyModuleRouterProtocol {
     
@@ -385,7 +385,7 @@ To create custom build methods:
 4. return the `view`.
 	
 ```swift
-//MARK: - Builder custom methods
+// MARK: - Builder custom methods
 
 extension NextModuleBuilder {
     

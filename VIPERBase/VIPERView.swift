@@ -9,17 +9,17 @@
 import Foundation
 
 /**
- Protocol that defines the **View** layer of VIPER architecture
+ Protocol that defines the **View** layer of VIPER architecture.
  */
 public protocol VIPERView: VIPERBaseLayer {
     
     /**
-     Type of the presenter in the view layer
+     Type of the presenter in the view layer.
      */
     associatedtype Presenter
     
     /**
-     Presenter of the module
+     Presenter of the module.
      */
     var presenter: Presenter! { get set }
 }

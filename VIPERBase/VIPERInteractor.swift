@@ -9,17 +9,17 @@
 import Foundation
 
 /**
- Protocol that defines the **Interactor** layer of VIPER architecture
+ Protocol that defines the **Interactor** layer of VIPER architecture.
  */
 public protocol VIPERInteractor: VIPERBaseLayer {
     
     /**
-     Type of the presenter in the interactor layer
+     Type of the presenter in the interactor layer.
      */
     associatedtype Presenter
     
     /**
-     Presenter of the module
+     Presenter of the module.
      */
     var presenter: Presenter! { get set }
 }
