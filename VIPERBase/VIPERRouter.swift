@@ -23,7 +23,7 @@ public protocol VIPERRouter: VIPERBaseLayer {
     var viewController: UIViewController! { get set }
 }
 
-//MARK: - Public methods
+// MARK: - Public methods
 
 public extension VIPERRouter {
     
@@ -65,7 +65,7 @@ public extension VIPERRouter {
     }
 }
 
-//MARK: - Private methods
+// MARK: - Private methods
 
 private extension VIPERRouter {
     

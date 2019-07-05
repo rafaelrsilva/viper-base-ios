@@ -11,13 +11,13 @@ final class ___VARIABLE_modulePresenterClass___: ___VARIABLE_basePresenterProtoc
 
 }
 
-//MARK: - ___VARIABLE_viewOutputContractName___
+// MARK: - ___VARIABLE_viewOutputContractName___
 
 extension ___VARIABLE_modulePresenterClass___: ___VARIABLE_viewOutputContractName___ {
 
 }
 
-//MARK: - ___VARIABLE_interactorOutputContractName___
+// MARK: - ___VARIABLE_interactorOutputContractName___
 
 extension ___VARIABLE_modulePresenterClass___: ___VARIABLE_interactorOutputContractName___ {
 
