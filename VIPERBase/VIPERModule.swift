@@ -36,7 +36,7 @@ public struct VIPERModule<View: UIViewController & VIPERView, Presenter: VIPERPr
     /**
      Attach the view of the module to a window.
      
-     - Parameter navigationController: Boolean value indicating whether the view should also be attached to a navigation controller. `Defaul = false`.
+     - Parameter navigationController: Boolean value indicating whether the view should also be attached to a navigation controller. `Defaul = false`
 
      - Returns: Created window.
      */
