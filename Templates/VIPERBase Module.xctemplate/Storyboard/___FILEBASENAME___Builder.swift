@@ -10,7 +10,7 @@ final class ___VARIABLE_moduleBuilderClass___: ___VARIABLE_baseBuilderProtocol__
     }
 }
 
-//MARK: - Builder custom methods
+// MARK: - Builder custom methods
 
 extension ___VARIABLE_moduleBuilderClass___ {
     

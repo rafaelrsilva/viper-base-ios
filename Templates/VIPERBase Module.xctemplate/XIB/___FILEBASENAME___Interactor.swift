@@ -9,7 +9,7 @@ final class ___VARIABLE_moduleInteractorClass___: ___VARIABLE_baseInteractorProt
 
 }
 
-//MARK: - ___VARIABLE_interactorContractName___
+// MARK: - ___VARIABLE_interactorContractName___
 
 extension ___VARIABLE_moduleInteractorClass___: ___VARIABLE_interactorContractName___ {
 

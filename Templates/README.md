@@ -57,4 +57,4 @@ For both storyboard and XIB, there is a default view controller component create
 
 After creating the module, it is expected no errors if you try to rebuild the project.
 
-This readme file covered only the template installation and usage. For assistence about implementation, check **VIPERBase** readme file [here](https://github.com/rafaelrsilva/viper-base-ios/blob/2.1.0/README.md).
+This readme file covered only the template installation and usage. For assistence about implementation, check **VIPERBase** readme file [here](https://github.com/rafaelrsilva/viper-base-ios/blob/2.1.1/README.md).

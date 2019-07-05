@@ -11,24 +11,34 @@ import Foundation
 /**
  Struct that represents a created VIPER module.
  */
-public struct VIPERModule<View: UIViewController & VIPERView, Presenter: VIPERPresenter> {
+public struct VIPERModule<View: UIViewController & VIPERView, Presenter: VIPERPresenter, Interactor: VIPERInteractor, Router: VIPERRouter> {
     
     /**
-     View of the module
+     View of the module.
      */
     public let view: View
     
     /**
-     Presenter of the module
+     Presenter of the module.
      */
     public let presenter: Presenter
     
     /**
-     Attach the view of the module to a window
+     Interactor of the module.
+     */
+    public let interactor: Interactor
+    
+    /**
+     Router of the module.
+     */
+    public let router: Router
+    
+    /**
+     Attach the view of the module to a window.
      
      - Parameter navigationController: Boolean value indicating whether the view should also be attached to a navigation controller. `Defaul = false`
 
-     - Returns: Created window
+     - Returns: Created window.
      */
     public func attachToWindow(withNavigationController navigationController: Bool = false) -> UIWindow {
         let window = UIWindow(frame: UIScreen.main.bounds)
@@ -38,9 +48,9 @@ public struct VIPERModule<View: UIViewController & VIPERView, Presenter: VIPERPr
     }
     
     /**
-     Attach the view of the module to a navigation controller
+     Attach the view of the module to a navigation controller.
      
-     - Returns: Created navigation controller
+     - Returns: Created navigation controller.
      */
     public func attachToNavigationController() -> UINavigationController {
         return UINavigationController(rootViewController: view)

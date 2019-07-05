@@ -9,7 +9,7 @@ final class ___VARIABLE_moduleRouterClass___: ___VARIABLE_baseRouterProtocol___ 
 
 }
 
-//MARK: - ___VARIABLE_routerContractName___
+// MARK: - ___VARIABLE_routerContractName___
 
 extension ___VARIABLE_moduleRouterClass___: ___VARIABLE_routerContractName___ {
 

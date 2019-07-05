@@ -8,10 +8,13 @@
 
 import Foundation
 
+/**
+ Base protocol for VIPER layers.
+ */
 public protocol VIPERBaseLayer: class {
     
     /**
-     Default initializer
+     Default initializer.
      */
     init()
 }
