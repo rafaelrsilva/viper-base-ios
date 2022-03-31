@@ -102,41 +102,4 @@ public extension VIPERBuilder {
             router: router
         )
     }
-
-    /**
-     Build the module and attach its view to a window.
-     
-     - Important:
-        If it is necessary to pass some data to the module, consider creating a custom build method in the module builder class
-        or use 'build' method instead.
-     
-     - Returns: Created window.
-     */
-    @available(*, deprecated, message: "This will be removed in v3.0. Use 'build()' or 'build(viewUIType:)' methods instead, then call 'attachToWindow()' method of the created module.")
-    static func buildAndAttachToWindow() -> UIWindow {
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = build().view
-        window.makeKeyAndVisible()
-        return window
-    }
-
-    /**
-     Build the module and attach its view to a navigation controller.
-     
-     - Important:
-        If it is necessary to pass some data to the module, consider creating a custom build method in the module builder class
-        or use 'build' method instead.
-     
-     - Returns: Created navigation controller.
-     */
-    @available(*, deprecated, message: "This will be removed in v3.0. Use 'build()' or 'build(viewUIType:)' methods instead, then call 'attachToNavigationController()' method of the created module.")
-    static func buildAndAttachToNavigationController(tabBarItem: UITabBarItem? = nil) -> UINavigationController {
-        let navigationController = UINavigationController(rootViewController: build().view)
-        
-        if let item = tabBarItem {
-            navigationController.tabBarItem = item
-        }
-        
-        return navigationController
-    }
 }
