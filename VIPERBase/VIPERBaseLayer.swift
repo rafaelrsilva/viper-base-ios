@@ -11,7 +11,7 @@ import Foundation
 /**
  Base protocol for VIPER layers.
  */
-public protocol VIPERBaseLayer: class {
+public protocol VIPERBaseLayer: AnyObject {
     
     /**
      Default initializer.
